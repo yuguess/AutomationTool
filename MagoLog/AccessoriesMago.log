@@ -1,0 +1,64 @@
+<suite name="accessories">
+  <class>solaris_menu.SolarisMenuTest</class>
+  <description>Tests that verify Accessories applications in the Opensolaris menu</description>
+  <case name="Open Archive Manager">
+    <method>testOpenMenu</method>
+    <description>It opens the Archive Manager menu and closes the application.</description>
+    <args>
+      <menuitem>mnuArchiveManager</menuitem>
+      <windowname>Archive Manager</windowname>
+      <closetype>menu</closetype>
+      <closename>mnuClose</closename>
+    </args>
+  <result><time>6.22912192345</time><pass>1</pass></result></case>
+  <case name="Open Calculator">
+    <method>testOpenMenu</method>
+    <description>It opens the Calculator menu and closes the application.</description>
+    <args>
+      <menuitem>mnuCalculator</menuitem>
+      <windowname>Calculator</windowname>
+      <closetype>menu</closetype>
+      <closename>mnuQuit</closename>
+   </args>
+   <result><time>5.7826821804</time><pass>1</pass></result></case>
+   <case name="Open Character Map">
+    <method>testOpenMenu</method>
+    <description>It opens the Character Map menu and closes the application.</description>
+    <args>
+      <menuitem>Character Map</menuitem>
+      <windowname>Character Map</windowname>
+      <closetype>menu</closetype>
+      <closename>mnuClose</closename>
+    </args>
+  <result><time>6.17668104172</time><pass>1</pass></result></case>
+  <case name="Open gedit Text Editor">
+    <method>testOpenMenu</method>
+    <description>It opens the Gedit and close the application.</description>
+    <args>
+       <menuitem>gedit Text Editor</menuitem>
+       <windowname>* - gedit</windowname>
+       <closetype>menu</closetype>
+       <closename>mnuQuit</closename>
+    </args>
+  <result><time>5.99992609024</time><pass>1</pass></result></case>
+  <case name="Open PDA Synchronization">
+    <method>testOpenMenu</method>
+    <description>It opens the PDA Synchronization and closes the application.</description>
+    <args>
+      <menuitem>PDA Synchronization</menuitem>
+      <windowname>frm*-pilotSettings</windowname>
+      <closetype>button</closetype>
+      <closename>btnCancel</closename>
+    </args>
+  <result><time>5.96103286743</time><pass>1</pass></result></case>
+  <case name="Open Take Screenshot">
+    <method>testOpenMenu</method>
+    <description>It opens the Take Screenshot and closes the application.</description>
+    <args>
+      <menuitem>Take Screenshot</menuitem>
+      <windowname>dlgTakeScreenshot</windowname>
+      <closetype>button</closetype>
+      <closename>btnCancel</closename>
+    </args>
+  <result><time>5.87110090256</time><pass>1</pass></result></case>
+</suite>
