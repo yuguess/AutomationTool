@@ -1,4 +1,6 @@
 import xml.dom.minidom
+import ConfigParser
+from xml.dom.minidom import Document
 
 def getTagText(root, tag):
     node = root.getElementsByTagName(tag)[0]
@@ -24,13 +26,36 @@ def getTagsText(root, tag):
                 rc.append(node.data)
     return rc
 
+def appendAttribute(node, config, section):
+    for option in config.options(section):
+        node.setAttribute(option, config.get(section, option))
+
+def appendTextNode(node, tag, text):
+    tagElement = Document().createElement(tag)
+    tagElement.appendChild(Document().createTextNode(text))
+    node.appendChild(tagElement)
+
 dom = xml.dom.minidom.parse('./AccessoriesMago.log')
 root = dom.documentElement
-print "TestRun Class:%s" %getTagText(root, "class")
-print "TestRun Description:%s" %getTagText(root, "description")
 
 testCaseStatus = getTagsText(root, "pass");
 testCase = getTagsAttribute(root, "case", "name")
 
+config = ConfigParser.ConfigParser()
+config.read("magoConfig.ini")
+
+doc = Document()
+test_run = doc.createElement("test_run")
+
+appendAttribute(test_run, config, "Test Run")
+appendTextNode(test_run, "summary", getTagText(root, "description"))
+
 for i in range(len(testCase)):
-    print "Testcase:%s Status:%s" %(testCase[i], testCaseStatus[i])
+    test_case = doc.createElement("test_case")
+    appendAttribute(test_case, config, "Test Case")
+    appendTextNode(test_case, "summary", testCase[i])
+    appendTextNode(test_case, "action", "pass")
+    test_run.appendChild(test_case)
+doc.appendChild(test_run)
+print doc.toprettyxml(indent="   ")
+
